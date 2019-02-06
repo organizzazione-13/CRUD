@@ -86,17 +86,3 @@ function redditoReale(reddito) {
             return '4000 o più'
     }
 }
-
-function redditoTestuale(reddito) {
-
-    switch (reddito) {
-        case '1000-2000':
-            return 'basso'
-        case '2000-3000':
-            return 'medio'
-        case '3000-4000':
-            return 'alto'
-        case '4000 o più':
-            return 'altissimo'
-    }
-}
