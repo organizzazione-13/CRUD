@@ -21,7 +21,35 @@ var persone = [
     new Persona("Kairi", "Baragona", "08/12/2003", "altissimo", "donna"),
 ];
 
-$().ready(updateRecords());
+$().ready(function () {
+    sortBy('cognome')
+    updateRecords();
+});
+
+function sortBy(cosa) {
+    if (cosa == 'nome') {
+        persone.sort(function (a, b) {
+            if (a.nome < b.nome) return -1;
+            else if (a.nome > b.nome) return 1;
+            else {
+                if (a.cognome < b.cognome) return -1;
+                else if (a.cognome > b.cognome) return 1;
+                else return 0;
+            }
+        })
+    }
+    if(cosa == 'cognome') {
+        persone.sort(function (a, b) {
+            if (a.cognome < b.cognome) return -1;
+            else if (a.cognome > b.cognome) return 1;
+            else {
+                if (a.nome < b.nome) return -1;
+                else if (a.nome > b.nome) return 1;
+                else return 0;
+            }
+        })
+    }
+}
 
 $('#entryForm').on('show.bs.modal', function (event) {
     var id = $(event.relatedTarget).data('scopo')
@@ -78,7 +106,7 @@ function salvaForm() {
     } else {
         persone[id] = new Persona($('#nome').val(), $('#cognome').val(), nascita, $('#reddito').val(), $('#sesso').val())
     }
-    
+
     $('#entryForm').modal('toggle');
     updateRecords()
     return false;
