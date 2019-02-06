@@ -33,7 +33,7 @@ function updateRecords() {
             <td>${persona.reddito}</td>
             <td>${persona.sesso}</td>
             <td>
-                <button type="button" class="btn btn-outline-dark"><i class="fas fa-cog"></i></button>
+                <button type="button" class="btn btn-outline-dark"><i class="fas fa-edit"></i></button>
                 <button type="button" class="btn btn-outline-dark"><i class="fas fa-trash"></i></button>
             </td>
         </tr>
