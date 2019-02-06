@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
         crossorigin="anonymous">
     <link rel="stylesheet" href="stylesheets/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet"> <!-- modificato -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
@@ -20,8 +21,9 @@
 </head>
 
 <body>
+
     <table class="table table-striped text-center">
-        <thead>
+        <thead class="table-bordered">
             <tr>
                 <th scope="col-2">Nome</th>
                 <th scope="col-2">Cognome</th>
@@ -34,35 +36,39 @@
         <tbody id="records">
         </tbody>
     </table>
+    <button id="addEntry" type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#entryForm"
+        data-scopo="new"><i class="fas fa-plus"></i> </button>
 
-    <button id="addEntry" type="button" class="btn btn-primary btn-dark" data-toggle="modal" data-target="#modulo"><i class="fas fa-plus"></i> </button>
-
-    <!-- Modal -->
-    <div class="modal fade" id="modulo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="entryForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Aggiungi persona</h5>
+                    <h5 class="modal-title" id="exampleModalLabel"></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form id="form" method="POST">
+                    <form id="form">
+                        <input type="hidden" class="form-control" id="scopo" />
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Nome</label>
                             <div class="col-sm-5">
-                                <input type="text" class="form-control" id="nome" />
+                                <input type="text" class="form-control" id="nome" required/>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Cognome</label>
                             <div class="col-sm-5">
-                                <input type="text" class="form-control" id="cognome" />
+                                <input type="text" class="form-control" id="cognome" required />
                             </div>
                         </div>
-                
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Nascita</label>
+                            <div class="col-sm-5">
+                                <input type="date" class="form-control" id="nascita" required/>
+                            </div>
+                        </div>
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Reddito</label>
                             <div class="col-sm-5">
@@ -79,7 +85,6 @@
                                 </div>
                             </div>
                         </div>
-                
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Sesso</label>
                             <div class="col-sm-5">
@@ -93,14 +98,15 @@
                         </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
+                    <input type="submit" class="btn btn-primary" onclick="salvaForm();" data-dismiss="modal">Salva impostazioni</input>
                 </div>
             </div>
         </div>
-    </div>
 
-    <script src="js/main.js"></script>
+
+
+        <script src="js/main.js"></script>
 </body>
 
 </html>
