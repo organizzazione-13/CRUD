@@ -19,11 +19,23 @@ var persone = [
     new Persona("Mario 8", "Rossi", "01/01/1990", "1000-2000", "Maschio"),
     new Persona("Mario 9", "Rossi", "01/01/1990", "1000-2000", "Maschio"),
     new Persona("Mario 10", "Rossi", "01/01/1990", "1000-2000", "Maschio"),
+    new Persona("Mario 1", "Rossi", "01/01/1990", "1000-2000", "Maschio"),
+    new Persona("Mario 2", "Rossi", "01/01/1990", "1000-2000", "Maschio"),
+    new Persona("Mario 3", "Rossi", "01/01/1990", "1000-2000", "Maschio"),
+    new Persona("Mario 4", "Rossi", "01/01/1990", "1000-2000", "Maschio"),
+    new Persona("Mario 5", "Rossi", "01/01/1990", "1000-2000", "Maschio"),
+    new Persona("Mario 6", "Rossi", "01/01/1990", "1000-2000", "Maschio"),
+    new Persona("Mario 7", "Rossi", "01/01/1990", "1000-2000", "Maschio"),
+    new Persona("Mario 8", "Rossi", "01/01/1990", "1000-2000", "Maschio"),
+    new Persona("Mario 9", "Rossi", "01/01/1990", "1000-2000", "Maschio"),
+    new Persona("Mario 10", "Rossi", "01/01/1990", "1000-2000", "Maschio"),
 ];
 
 $().ready(updateRecords());
 
 function updateRecords() {
+    $('#records').html('');
+    c = 0;
     for (let persona of persone) {
         $('#records').append(`
         <tr>
@@ -34,9 +46,15 @@ function updateRecords() {
             <td>${persona.sesso}</td>
             <td>
                 <button type="button" class="btn btn-outline-dark"><i class="fas fa-edit"></i></button>
-                <button type="button" class="btn btn-outline-dark"><i class="fas fa-trash"></i></button>
+                <button type="button" class="btn btn-outline-dark" onclick="removeEntry(${c});"><i class="fas fa-trash"></i></button>
             </td>
         </tr>
-        `)
+        `);
+        c++;
     }
+}
+
+function removeEntry(id) {
+    persone.splice(id, 1);
+    updateRecords();
 }

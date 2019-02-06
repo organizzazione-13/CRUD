@@ -1,0 +1,6 @@
+#addEntry {
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+    border-radius: 50%;
+}
