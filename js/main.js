@@ -78,8 +78,10 @@ function salvaForm() {
     } else {
         persone[id] = new Persona($('#nome').val(), $('#cognome').val(), nascita, $('#reddito').val(), $('#sesso').val())
     }
-
+    
+    $('#entryForm').modal('toggle');
     updateRecords()
+    return false;
 }
 
 function redditoReale(reddito) {
