@@ -84,13 +84,13 @@ var sort = {
     'cosa': 'nome',
     'invertito': false
 }
-
+var prevSearch = ''
 var page = 1;
 var resultsPerPage = 13;
 
 // Appena la pagina si sarà caricata
 $().ready(function () {
-    search('');
+    search();
     updatePage(1)
     $('#sortExpanded').css('display', 'none');
     $('#sortExpanded').css('opacity', 1);
@@ -126,6 +126,7 @@ $('#entryForm').on('show.bs.modal', function (event) {
     if (id == 'new') { // Nuova riga
         $('#titoloModalForm').text('Aggiungi nuova persona');
         $('#bodyModalForm input').val('')
+        $('#nascita').val('1970-01-01')
     } else { // Modifica riga
         $('#titoloModalForm').text('Modifica i dati inseriti');
         $('#nome').val(persone[id].nome)
@@ -307,7 +308,7 @@ function salvaForm() {
     }
     sortedPersone = persone;
     $('#entryForm').modal('toggle');
-    updateRecords()
+    search()
     return false;
 }
 
@@ -382,13 +383,11 @@ function sortBy(cosa, invertito) {
 }
 
 function updatePage(newPage) {
-    if (newPage < 1 || newPage > Math.ceil(personeCercate.length / resultsPerPage)) {
-        if (personeCercate.length == 0)
-            updateRecords()
-        else
-            return;
+    if (newPage < 1) {
+        return;
     }
-    page = newPage;
+    if (newPage > Math.ceil(personeCercate.length / resultsPerPage)) page = Math.ceil(personeCercate.length / resultsPerPage)
+    else page = newPage;
     personePage = persone.slice((page - 1) * resultsPerPage, page * resultsPerPage);
     $('#sortCollapsed').text(page)
     $('#pageButtons').html('')
@@ -403,18 +402,14 @@ function updatePage(newPage) {
     })
 }
 
-function search(text) {
+function search(text = prevSearch) {
+    prevSearch = text;
     personeCercate = [];
     text = text.trim()
     persone.forEach((el) => {
         if (el.nome.toLowerCase().includes(text.toLowerCase()) || el.cognome.toLowerCase().includes(text.toLowerCase()) || el.nascita.includes(text) || el.sesso.toLowerCase().includes(text.toLowerCase()) || el.redditoNum().includes(text)) {
-            // console.log(el.nome.toLowerCase().includes(text.toLowerCase()), 
-            //                     el.cognome.toLowerCase().includes(text.toLowerCase()),
-            //                     el.nascita.includes(text),
-            //                     el.sesso.toLowerCase().includes(text.toLowerCase()),
-            //                     el.redditoNum().includes(text))
             personeCercate.push(el)
         }
     })
-    updatePage(1)
+    updatePage(page)
 }
