@@ -386,7 +386,7 @@ function updatePage(newPage) {
     if (newPage < 1) {
         return;
     }
-    if (newPage > Math.ceil(personeCercate.length / resultsPerPage)) page = Math.ceil(personeCercate.length / resultsPerPage)
+    if (newPage > Math.ceil(personeCercate.length / resultsPerPage) && personeCercate.length != 0) page = Math.ceil(personeCercate.length / resultsPerPage)
     else page = newPage;
     personePage = persone.slice((page - 1) * resultsPerPage, page * resultsPerPage);
     $('#sortCollapsed').text(page)
