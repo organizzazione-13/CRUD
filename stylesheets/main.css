@@ -44,12 +44,12 @@ body {
     height: 38px;
 }
 
-#leftmostExpandedButton {
+#firstPage {
     float:left;
     border-radius: 20px 0 0 20px;
 }
 
-#rightmostExpandedButton {
+#lastPage {
     float:left;
     border-radius: 0 20px 20px 0;
 }

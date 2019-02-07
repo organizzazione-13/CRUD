@@ -25,7 +25,7 @@
     <table class="table table-striped text-center table-sm">
         <thead class="table-bordered">
             <tr>
-                <th scope="col">Nome<i id="sortNome" class="sort ml-2 fas fa-sort"></i></th>
+                <th scope="col">Nome<i id="sortNome" class="sort ml-2 fas fa-sort selected"></i></th>
                 <th scope="col">Cognome<i id="sortCognome" class="sort ml-2 fas fa-sort"></i></th>
                 <th scope="col">Nascita<i id="sortNascita" class="sort ml-2 fas fa-sort"></i></th>
                 <th scope="col">Reddito<i id="sortReddito" class="sort ml-2 fas fa-sort"></i></th>
@@ -144,13 +144,12 @@
     <button id="sortCollapsed" type="button" class="btn btn-outline-dark">1</button>
 
     <div id="sortExpanded">
-        <button type="button" id="leftmostExpandedButton" class="btn btn-outline-dark navigation">&laquo;</button>
-        <button type="button" class="btn btn-outline-dark navigation expandedButton">&lt;</button>
-        <button type="button" class="btn btn-outline-dark navigation expandedButton">1</button>
-        <button type="button" class="btn btn-outline-dark navigation expandedButton">2</button>
-        <button type="button" class="btn btn-outline-dark navigation expandedButton">3</button>
-        <button type="button" class="btn btn-outline-dark navigation expandedButton">&gt;</button>
-        <button type="button" id="rightmostExpandedButton" class="btn btn-outline-dark navigation">&raquo;</button>
+        <button type="button" id="firstPage" class="btn btn-outline-dark navigation">&laquo;</button>
+        <button type="button" id="previousPage" class="btn btn-outline-dark navigation expandedButton">&lt;</button>
+        <span id="pageButtons">
+        </span>
+        <button type="button" id="nextPage" class="btn btn-outline-dark navigation expandedButton">&gt;</button>
+        <button type="button" id="lastPage" class="btn btn-outline-dark navigation">&raquo;</button>
     </div>
     <script src="js/main.js"></script>
 </body>
