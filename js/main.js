@@ -295,7 +295,7 @@ function removeEntry(id) {
     persone.splice(id, 1);
     sortedPersone = persone;
     $($('.record')[id]).find('[data-toggle="tooltip"]').tooltip('hide')
-    updateRecords();
+    search();
 }
 
 // Aggiungo o modifico una riga 
