@@ -275,10 +275,10 @@ function updateRecords() {
             <td>${persona.sesso.charAt(0).toUpperCase() + persona.sesso.slice(1)}</td>
             <td>
                 <span data-toggle="modal" data-target="#entryForm" data-scopo="${persone.indexOf(persona)}">
-                    <button type="button" class="btn btn-outline-dark" data-toggle="tooltip" data-placement="left" title="edit"><i class="fas fa-edit"></i></button>
+                    <button type="button" class="btn btn-outline-dark" data-toggle="tooltip" data-placement="left" title="Modifica"><i class="fas fa-edit"></i></button>
                 </span>
                 <span data-toggle="modal" data-target="#confermaEliminazione" data-scopo="${persone.indexOf(persona)}">
-                    <button type="button" class="btn btn-outline-danger" data-toggle="tooltip" data-placement="right" title="delete"><i class="fas fa-trash"></i></button>
+                    <button type="button" class="btn btn-outline-danger" data-toggle="tooltip" data-placement="right" title="Elimina"><i class="fas fa-trash"></i></button>
                 </span>
             </td>
         </tr>
