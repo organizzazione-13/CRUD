@@ -77,6 +77,8 @@ var sort = {
 
 // Appena la pagina si sarà caricata
 $().ready(function () {
+    $('#sortExpanded').css('display', 'none');
+    $('#sortExpanded').css('opacity', 1);
     // sortBy('cognome')
     // Aggiorno il contenuto della tabella
     updateRecords();
@@ -210,6 +212,16 @@ $('.sort').click(function (evt) {
         default:
             console.log(evt.target.id)
     }
+})
+
+$('#sortCollapsed').mouseenter(function () {
+    $('#sortCollapsed').css('display', 'none');
+    $('#sortExpanded').css('display', 'block');
+})
+
+$('#sortExpanded').mouseleave(function () {
+    $('#sortExpanded').css('display', 'none');
+    $('#sortCollapsed').css('display', 'block');
 })
 
 // Stampo le righe nella tabella
