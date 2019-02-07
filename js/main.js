@@ -55,8 +55,8 @@ function updateRecords() {
             <td>${redditoReale(persona.reddito)}</td>
             <td>${persona.sesso.charAt(0).toUpperCase() + persona.sesso.slice(1)}</td>
             <td>
-                <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#entryForm" data-scopo="${c}"><i class="fas fa-edit"></i></button>
-                <button type="button" class="btn btn-outline-dark" onclick="removeEntry(${c});"><i class="fas fa-trash"></i></button>
+                <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#entryForm" data-scopo="${c}" data-toggle="tooltip" title="Modifica"><i class="fas fa-edit"></i></button>
+                <button type="button" class="btn btn-outline-dark" onclick="removeEntry(${c});"><i class="fas fa-trash" data-toggle="tooltip" title="Elimina"></i></button>
             </td>
         </tr>
         `);
