@@ -1,0 +1,14 @@
+#addEntry {
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+    border-radius: 50%;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+body
+{
+    font-family: 'Raleway', sans-serif;
+}
