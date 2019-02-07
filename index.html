@@ -21,26 +21,48 @@
         crossorigin="anonymous"></script>
 </head>
 
-<body class="default">
- <!-- Creazione menù superiore-->
+<body>
+    <!-- crea la tabella -->
     <table class="table table-striped text-center table-sm">
-        <thead class="default table-bordered">
-            <tr class="default">
-                <th class="default" scope="col">Nome<i id="sortNome" class="pointer sort ml-2 fas fa-sort"></i></th>
-                <th class="default" scope="col">Cognome<i id="sortCognome" class="pointer sort ml-2 fas fa-sort"></i></th>
-                <th class="default" scope="col">Nascita<i id="sortNascita" class="pointer sort ml-2 fas fa-sort"></i></th>
-                <th class="default" scope="col">Reddito<i id="sortReddito" class="pointer sort ml-2 fas fa-sort"></i></th>
-                <th class="default" scope="col">Sesso<i id="sortSesso" class="pointer sort ml-2 fas fa-sort"></i></th>
-                <th class="default" scope="col">Comandi</th>
+        <thead class="table-bordered">
+            <tr>
+                <th scope="col">Nome<i id="sortNome" class="sort ml-2 fas fa-sort selected"></i></th>
+                <th scope="col">Cognome<i id="sortCognome" class="sort ml-2 fas fa-sort"></i></th>
+                <th scope="col">Nascita<i id="sortNascita" class="sort ml-2 fas fa-sort"></i></th>
+                <th scope="col">Reddito<i id="sortReddito" class="sort ml-2 fas fa-sort"></i></th>
+                <th scope="col">Sesso<i id="sortSesso" class="sort ml-2 fas fa-sort"></i></th>
+                <th scope="col">Comandi</th>
             </tr>
         </thead>
         <tbody id="records">
         </tbody>
     </table>
-    <!--Bottone per aggiungere nuovo elemento-->
+    <!-- aggiungi un nuovo elemento alla lista-->
     <button id="addEntry" type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#entryForm"
         data-scopo="new"><i class="fas fa-plus"></i> </button>
-    <!--Apertura form modale che consente la modifica dei vari campi-->
+    <!--  bottone del paginatore-->
+    <button id="sortCollapsed" type="button" class="btn btn-outline-dark">1</button>
+    <!-- il paginatore che fa cose-->
+    <div id="sortExpanded">
+        <button type="button" id="firstPage" class="btn btn-outline-dark navigation">&laquo;</button>
+        <button type="button" id="previousPage" class="btn btn-outline-dark navigation expandedButton">&lt;</button>
+        <span id="pageButtons">
+        </span>
+        <button type="button" id="nextPage" class="btn btn-outline-dark navigation expandedButton">&gt;</button>
+        <button type="button" id="lastPage" class="btn btn-outline-dark navigation">&raquo;</button>
+    </div>
+
+    <!-- bottone della ricerca-->
+    <div class="container h-100">
+        <div class="d-flex justify-content-center h-100">
+            <div class="searchbar">
+                    <input class="search_input" type="text" name="" placeholder="Cerca...">
+                    <i class=" search_icon fas fa-search"></i>
+            </div>
+        </div>
+    </div>
+
+    <!--apre la modal e effettua tutti i controlli sui campi-->
     <div class="modal fade" id="entryForm" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -114,7 +136,7 @@
         </div>
     </div>
 
-    <!--Form modale conferma sull'eliminazione-->
+    <!-- apre una modal per il controllo sull'eliminazione-->
     <div class="modal fade" id="confermaEliminazione" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
@@ -143,31 +165,7 @@
         </div>
     </div>
 
-    <button id="sortCollapsed" type="button" class="btn btn-outline-dark">1</button>
-    <!--Istanziazione del paginatore-->
-    <div id="sortExpanded">
-        <button type="button" id="leftmostExpandedButton" class="btn btn-outline-dark navigation">&laquo;</button>
-        <button type="button" class="btn btn-outline-dark navigation expandedButton">&lt;</button>
-        <button type="button" class="btn btn-outline-dark navigation expandedButton">1</button>
-        <button type="button" class="btn btn-outline-dark navigation expandedButton">2</button>
-        <button type="button" class="btn btn-outline-dark navigation expandedButton">3</button>
-        <button type="button" class="btn btn-outline-dark navigation expandedButton">&gt;</button>
-        <button type="button" id="rightmostExpandedButton" class="btn btn-outline-dark navigation">&raquo;</button>
-    </div>
-
-    <!--Istanziazione barra di ricerca-->
-    <button id="addEntry" type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#entryForm"
-        data-scopo="new"><i class="fas fa-plus"></i> </button>
-    <div class="container h-100">
-        <div class="d-flex justify-content-center h-100">
-            <div class="searchbar">
-                <input class="search_input" type="text" name="" placeholder="Search...">
-                <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
-            </div>
-        </div>
-    </div>
-    
     <script src="js/main.js"></script>
-    </body>
+</body>
 
 </html>

@@ -1,14 +1,14 @@
-.pointer {
-    cursor: pointer;
-}
-.default {
-    cursor: default;
-}
 #addEntry {
     position: fixed;
     right: 10px;
     bottom: 10px;
     border-radius: 20px;
+}
+
+#searchCollapsed {
+    position: fixed;
+    bottom: 10px;
+    margin: auto
 }
 
 #sortCollapsed {
@@ -27,9 +27,9 @@
     bottom: 10px;
 }
 
-/* ::-webkit-scrollbar {
+::-webkit-scrollbar {
     display: none;
-} */
+}
 
 body {
     font-family: 'Raleway', sans-serif;
@@ -50,59 +50,62 @@ body {
     height: 38px;
 }
 
-#leftmostExpandedButton {
-    float:left;
+#firstPage {
+    float: left;
     border-radius: 20px 0 0 20px;
 }
 
-#rightmostExpandedButton {
-    float:left;
+#lastPage {
+    float: left;
     border-radius: 0 20px 20px 0;
 }
 
 .expandedButton {
-    float:left;
+    float: left;
     border-radius: 0px;
 }
-.searchbar
-{
+
+.searchbar {
     height: 60px;
-    background-color: #353b48;
+    background-color: #343a40;
     border-radius: 30px;
     padding: 10px;
     position: fixed;
     bottom: 10px;
 }
-    
-.search_input
-{
+
+.search_input {
     color: white;
     border: 0;
     outline: 0;
     background: none;
     width: 0;
-    caret-color:transparent;
+    caret-color: transparent;
     line-height: 40px;
     transition: width 0.4s linear;
 
 }
-    
-.searchbar:hover > .search_input
-{
+
+.search_input::placeholder {
+    color: white;
+}
+
+.search_input:focus::placeholder {
+    color: transparent;
+}
+
+.searchbar:hover>.search_input {
     padding: 0 10px;
     width: 450px;
-    caret-color:black;
     transition: width 0.4s linear;
 }
-    
-.searchbar:hover > .search_icon
-{
+
+.searchbar:hover>.search_icon {
     background: white;
     color: black;
 }
-    
-.search_icon
-{
+
+.search_icon {
     height: 40px;
     width: 40px;
     float: right;
@@ -110,5 +113,5 @@ body {
     justify-content: center;
     align-items: center;
     border-radius: 50%;
-    color:white;
+    color: white;
 }
