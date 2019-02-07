@@ -4,7 +4,8 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
+    <title>C.R.U.D</title>
+    <!--carico tutti i file css e js necessari-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
         crossorigin="anonymous">
@@ -20,56 +21,63 @@
         crossorigin="anonymous"></script>
 </head>
 
-<body>
-
-    <table class="table table-striped text-center">
-        <thead class="table-bordered">
-            <tr>
-                <th scope="col-2">Nome</th>
-                <th scope="col-2">Cognome</th>
-                <th scope="col-2">Nascita</th>
-                <th scope="col-2">Reddito</th>
-                <th scope="col-2">Sesso</th>
-                <th scope="col-1">Comandi</th>
+<body class="default">
+ <!-- Creazione menù superiore-->
+    <table class="table table-striped text-center table-sm">
+        <thead class="default table-bordered">
+            <tr class="default">
+                <th class="default" scope="col">Nome<i id="sortNome" class="pointer sort ml-2 fas fa-sort"></i></th>
+                <th class="default" scope="col">Cognome<i id="sortCognome" class="pointer sort ml-2 fas fa-sort"></i></th>
+                <th class="default" scope="col">Nascita<i id="sortNascita" class="pointer sort ml-2 fas fa-sort"></i></th>
+                <th class="default" scope="col">Reddito<i id="sortReddito" class="pointer sort ml-2 fas fa-sort"></i></th>
+                <th class="default" scope="col">Sesso<i id="sortSesso" class="pointer sort ml-2 fas fa-sort"></i></th>
+                <th class="default" scope="col">Comandi</th>
             </tr>
         </thead>
         <tbody id="records">
         </tbody>
     </table>
+    <!--Bottone per aggiungere nuovo elemento-->
     <button id="addEntry" type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#entryForm"
         data-scopo="new"><i class="fas fa-plus"></i> </button>
-
-    <div class="modal fade" id="entryForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+    <!--Apertura form modale che consente la modifica dei vari campi-->
+    <div class="modal fade" id="entryForm" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel"></h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <h5 class="modal-title container-fluid text-center" id="titoloModalForm"></h5>
                 </div>
-                <div class="modal-body">
-                    <form id="form" onsubmit="return salvaForm();">
+                <form class="needs-validation" novalidate onsubmit="return false;">
+                    <div class="modal-body" id="bodyModalForm">
                         <input type="hidden" class="form-control" id="scopo" />
-                        <div class="form-group row">
+                        <div class="form-group row justify-content-between">
                             <label class="col-3 col-form-label">Nome</label>
                             <div class="col-7">
                                 <input type="text" class="form-control" id="nome" required>
+                                <div class="invalid-feedback">
+                                    Inserisci un nome valido.
+                                </div>
                             </div>
                         </div>
-                        <div class="form-group row">
+                        <div class="form-group row justify-content-between">
                             <label class="col-3 col-form-label">Cognome</label>
                             <div class="col-7">
                                 <input type="text" class="form-control" id="cognome" required>
+                                <div class="invalid-feedback">
+                                    Inserisci un cognome valido.
+                                </div>
                             </div>
                         </div>
-                        <div class="form-group row">
+                        <div class="form-group row justify-content-between">
                             <label class="col-3 col-form-label">Nascita</label>
                             <div class="col-7">
                                 <input type="date" class="form-control" id="nascita" required>
+                                <div class="invalid-feedback">
+                                    Inserisci una data valida.
+                                </div>
                             </div>
                         </div>
-                        <div class="form-group row">
+                        <div class="form-group row justify-content-between">
                             <label class="col-3 col-form-label">Reddito</label>
                             <div class="col-7">
                                 <div class="input-group">
@@ -77,15 +85,15 @@
                                         <span class="input-group-text">€</span>
                                     </div>
                                     <select class="form-control" id="reddito">
-                                        <option value="basso">1000-2000 €</option>
-                                        <option value="medio">2000-3000 €</option>
-                                        <option value="alto">3000-4000 €</option>
-                                        <option value="altissimo">4000 o più €</option>
+                                        <option value="basso">1000-2000</option>
+                                        <option value="medio">2000-3000</option>
+                                        <option value="alto">3000-4000</option>
+                                        <option value="altissimo">4000 o più</option>
                                     </select>
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group row">
+                        <div class="form-group row justify-content-between">
                             <label class="col-3 col-form-label">Sesso</label>
                             <div class="col-7">
                                 <div class="input-group">
@@ -96,17 +104,70 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary ml-auto" data-dismiss="modal">Chiudi</button>
+                        <button type="submit" class="btn btn-primary mr-auto">Salva</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!--Form modale conferma sull'eliminazione-->
+    <div class="modal fade" id="confermaEliminazione" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title container-fluid text-center ">ATTENZIONE</h5>
+                </div>
+                <div class="modal-body">
+                    Sicuro di voler eliminare questa riga?
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <td id="delNome"></td>
+                                <td id="delCognome"></td>
+                                <td id="delNascita"></td>
+                                <td id="delReddito"></td>
+                                <td id="delSesso"></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
-                    <button type="submit" class="btn btn-primary">Salva impostazioni</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                    <button type="button" class="btn btn-danger delete" data-dismiss="modal">Sì</button>
                 </div>
             </div>
         </div>
+    </div>
 
+    <button id="sortCollapsed" type="button" class="btn btn-outline-dark">1</button>
+    <!--Istanziazione del paginatore-->
+    <div id="sortExpanded">
+        <button type="button" id="leftmostExpandedButton" class="btn btn-outline-dark navigation">&laquo;</button>
+        <button type="button" class="btn btn-outline-dark navigation expandedButton">&lt;</button>
+        <button type="button" class="btn btn-outline-dark navigation expandedButton">1</button>
+        <button type="button" class="btn btn-outline-dark navigation expandedButton">2</button>
+        <button type="button" class="btn btn-outline-dark navigation expandedButton">3</button>
+        <button type="button" class="btn btn-outline-dark navigation expandedButton">&gt;</button>
+        <button type="button" id="rightmostExpandedButton" class="btn btn-outline-dark navigation">&raquo;</button>
+    </div>
 
-
-        <script src="js/main.js"></script>
-</body>
+    <!--Istanziazione barra di ricerca-->
+    <button id="addEntry" type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#entryForm"
+        data-scopo="new"><i class="fas fa-plus"></i> </button>
+    <div class="container h-100">
+        <div class="d-flex justify-content-center h-100">
+            <div class="searchbar">
+                <input class="search_input" type="text" name="" placeholder="Search...">
+                <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
+            </div>
+        </div>
+    </div>
+    
+    <script src="js/main.js"></script>
+    </body>
 
 </html>
