@@ -69,6 +69,14 @@ var persone = [
     new Persona("Sora", "Keys", "28/03/2003", "basso", "uomo"),
     new Persona("Kairi", "Baragona", "08/12/2003", "altissimo", "donna"),
 ];
+var personePage = [];
+var sort = {
+    'cosa': 'nome',
+    'invertito': false
+}
+
+var page = 1;
+var resultsPerPage = 13;
 
 var sort = {
     'cosa': 'nome',
@@ -229,7 +237,7 @@ function updateRecords() {
     sortBy(sort.cosa, sort.invertito)
     $('#records').html('');
     c = 0;
-    for (let persona of persone) {
+    for (let persona of personePage) {
         $('#records').append(`
         <tr class="record">
             <td>${persona.nome}</td>
@@ -268,7 +276,6 @@ function salvaForm() {
     } else {
         persone[id] = new Persona($('#nome').val(), $('#cognome').val(), $('#nascita').val(), $('#reddito').val(), $('#sesso').val())
     }
-
     $('#entryForm').modal('toggle');
     updateRecords()
     return false;
@@ -342,4 +349,21 @@ function sortBy(cosa, invertito) {
         if (invertito)
             persone.reverse()
     }
+}
+
+function updatePage(newPage) {
+    if(newPage < 1 || newPage > Math.ceil(persone.length / resultsPerPage)) return;
+    page = newPage;
+    personePage = persone.slice((page - 1) * resultsPerPage, page * resultsPerPage);
+    $('#sortCollapsed').text(page)
+    $('#pageButtons').html('')
+    for (i = page - 2; i < page + 3; i++) {
+        if (i != page && i > 0 && i <= Math.ceil(persone.length / resultsPerPage))
+            $('#pageButtons').append(`<button type="button" class="btn btn-outline-dark navigation expandedButton pageButton">${i}</button>`)
+    }
+    updateRecords();
+
+    $('.pageButton').click(function () {
+        updatePage($(this).text())
+    })
 }
