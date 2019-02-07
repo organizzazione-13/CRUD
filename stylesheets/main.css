@@ -1,3 +1,9 @@
+.pointer {
+    cursor: pointer;
+}
+.default {
+    cursor: default;
+}
 #addEntry {
     position: fixed;
     right: 10px;
@@ -44,12 +50,12 @@ body {
     height: 38px;
 }
 
-#firstPage {
+#leftmostExpandedButton {
     float:left;
     border-radius: 20px 0 0 20px;
 }
 
-#lastPage {
+#rightmostExpandedButton {
     float:left;
     border-radius: 0 20px 20px 0;
 }
