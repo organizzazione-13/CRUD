@@ -16,7 +16,6 @@ var persone = [
     new Persona("Josuke", "Higashicata", "23/05/1983", "basso", "uomo"),
     new Persona("Johnny", "Joestar", "09/01/1871", "altissimo", "uomo"),
     new Persona("Jonathan", "Joestar", "04/04/1868", "basso", "uomo"),
-    new Persona("Dio", "Brando", "01/02/1868", "basso", "uomo"),
     new Persona("Sora", "Keys", "28/03/2003", "basso", "uomo"),
     new Persona("Kairi", "Baragona", "08/12/2003", "altissimo", "donna"),
 ];
@@ -24,7 +23,24 @@ var persone = [
 $().ready(function () {
     sortBy('cognome')
     updateRecords();
+    $('.needs-validation').on('submit', function (event) {
+        if ($('.needs-validation')[0].checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+        } else {
+            salvaForm();
+            $('.needs-validation')[0].classList.remove('was-validated');
+            return;
+        }
+        $('.needs-validation')[0].classList.add('was-validated');
+    });
 });
+
+$('#addEntry').hover(function() {
+    $(this).html("Aggiungi una riga");
+}, function() {
+    $(this).html(`<i class="fas fa-plus"></i>`)
+})
 
 function sortBy(cosa) {
     if (cosa == 'nome') {
@@ -38,7 +54,7 @@ function sortBy(cosa) {
             }
         })
     }
-    if(cosa == 'cognome') {
+    if (cosa == 'cognome') {
         persone.sort(function (a, b) {
             if (a.cognome < b.cognome) return -1;
             else if (a.cognome > b.cognome) return 1;
@@ -55,10 +71,10 @@ $('#entryForm').on('show.bs.modal', function (event) {
     var id = $(event.relatedTarget).data('scopo')
 
     if (id == 'new') {
-        $('.modal-title').text('Aggiungi nuova persona');
-        $('.modal-body input').val('')
+        $('#titoloModalForm').text('Aggiungi nuova persona');
+        $('#bodyModalForm input').val('')
     } else {
-        $('.modal-title').text('Modifica i dati inseriti');
+        $('#titoloModalForm').text('Modifica i dati inseriti');
         $('#nome').val(persone[id].nome)
         $('#cognome').val(persone[id].cognome)
         var nascita = persone[id].nascita.split("/");
@@ -69,31 +85,48 @@ $('#entryForm').on('show.bs.modal', function (event) {
     $('#scopo').val(id)
 })
 
-
+$('#confermaEliminazione').on('show.bs.modal', function (event) {
+    var id = $(event.relatedTarget).data('scopo')
+    console.log(id)
+    $('#delNome').text(persone[id].nome)
+    $('#delCognome').text(persone[id].cognome)
+    var nascita = persone[id].nascita.split("/");
+    $('#delNascita').text(nascita[2] + "-" + nascita[1] + "-" + nascita[0])
+    $('#delReddito').text(persone[id].reddito)
+    $('#delSesso').text(persone[id].sesso)
+    $($('#confermaEliminazione')).find('.delete').attr('onclick', `removeEntry(${id})`)
+})
 
 function updateRecords() {
     $('#records').html('');
     c = 0;
     for (let persona of persone) {
         $('#records').append(`
-        <tr>
+        <tr class="record">
             <td>${persona.nome}</td>
             <td>${persona.cognome}</td>
             <td>${persona.nascita}</td>
             <td>${redditoReale(persona.reddito)}</td>
             <td>${persona.sesso.charAt(0).toUpperCase() + persona.sesso.slice(1)}</td>
             <td>
-                <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#entryForm" data-scopo="${c}"><i class="fas fa-edit"></i></button>
-                <button type="button" class="btn btn-outline-dark" onclick="removeEntry(${c});"><i class="fas fa-trash"></i></button>
+                <span data-toggle="modal" data-target="#entryForm" data-scopo="${c}">
+                    <button type="button" class="btn btn-outline-dark" data-toggle="tooltip" data-placement="left" title="edit"><i class="fas fa-edit"></i></button>
+                </span>
+                <span data-toggle="modal" data-target="#confermaEliminazione" data-scopo="${c}">
+                    <button type="button" class="btn btn-outline-danger" data-toggle="tooltip" data-placement="right" title="delete"><i class="fas fa-trash"></i></button>
+                </span>
             </td>
         </tr>
         `);
         c++;
     }
+    $('[data-toggle="tooltip"]').tooltip()
+
 }
 
 function removeEntry(id) {
     persone.splice(id, 1);
+    $($('.record')[id]).find('[data-toggle="tooltip"]').tooltip('hide')
     updateRecords();
 }
 
@@ -115,12 +148,12 @@ function salvaForm() {
 function redditoReale(reddito) {
     switch (reddito) {
         case 'basso':
-            return '1000-2000'
+            return '1000-2000 €'
         case 'medio':
-            return '2000-3000'
+            return '2000-3000 €'
         case 'alto':
-            return '3000-4000'
+            return '3000-4000 €'
         case 'altissimo':
-            return '4000 o più'
+            return '4000 o più €'
     }
 }

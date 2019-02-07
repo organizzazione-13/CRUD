@@ -22,15 +22,15 @@
 
 <body>
 
-    <table class="table table-striped text-center">
+    <table class="table table-striped text-center table-sm">
         <thead class="table-bordered">
             <tr>
-                <th scope="col-2">Nome</th>
-                <th scope="col-2">Cognome</th>
-                <th scope="col-2">Nascita</th>
-                <th scope="col-2">Reddito</th>
-                <th scope="col-2">Sesso</th>
-                <th scope="col-1">Comandi</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Cognome</th>
+                <th scope="col">Nascita</th>
+                <th scope="col">Reddito</th>
+                <th scope="col">Sesso</th>
+                <th scope="col">Comandi</th>
             </tr>
         </thead>
         <tbody id="records">
@@ -39,37 +39,43 @@
     <button id="addEntry" type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#entryForm"
         data-scopo="new"><i class="fas fa-plus"></i> </button>
 
-    <div class="modal fade" id="entryForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+    <div class="modal fade" id="entryForm" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel"></h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <h5 class="modal-title container-fluid text-center" id="titoloModalForm"></h5>
                 </div>
-                <div class="modal-body">
-                    <form id="form" onsubmit="return salvaForm();">
+                <form class="needs-validation" novalidate onsubmit="return false;">
+                    <div class="modal-body" id="bodyModalForm">
                         <input type="hidden" class="form-control" id="scopo" />
-                        <div class="form-group row">
+                        <div class="form-group row justify-content-between">
                             <label class="col-3 col-form-label">Nome</label>
                             <div class="col-7">
                                 <input type="text" class="form-control" id="nome" required>
+                                <div class="invalid-feedback">
+                                    Inserisci un nome valido.
+                                </div>
                             </div>
                         </div>
-                        <div class="form-group row">
+                        <div class="form-group row justify-content-between">
                             <label class="col-3 col-form-label">Cognome</label>
                             <div class="col-7">
                                 <input type="text" class="form-control" id="cognome" required>
+                                <div class="invalid-feedback">
+                                    Inserisci un cognome valido.
+                                </div>
                             </div>
                         </div>
-                        <div class="form-group row">
+                        <div class="form-group row justify-content-between">
                             <label class="col-3 col-form-label">Nascita</label>
                             <div class="col-7">
                                 <input type="date" class="form-control" id="nascita" required>
+                                <div class="invalid-feedback">
+                                    Inserisci una data valida.
+                                </div>
                             </div>
                         </div>
-                        <div class="form-group row">
+                        <div class="form-group row justify-content-between">
                             <label class="col-3 col-form-label">Reddito</label>
                             <div class="col-7">
                                 <div class="input-group">
@@ -85,7 +91,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group row">
+                        <div class="form-group row justify-content-between">
                             <label class="col-3 col-form-label">Sesso</label>
                             <div class="col-7">
                                 <div class="input-group">
@@ -96,17 +102,47 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary ml-auto" data-dismiss="modal">Chiudi</button>
+                        <button type="submit" class="btn btn-primary mr-auto">Salva</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="confermaEliminazione" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title container-fluid text-center ">ATTENZIONE</h5>
+                </div>
+                <div class="modal-body">
+                    Sicuro di voler eliminare questa riga?
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <td id="delNome"></td>
+                                <td id="delCognome"></td>
+                                <td id="delNascita"></td>
+                                <td id="delReddito"></td>
+                                <td id="delSesso"></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
-                    <button type="submit" class="btn btn-primary">Salva impostazioni</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                    <button type="button" class="btn btn-danger delete" data-dismiss="modal">Sì</button>
                 </div>
             </div>
         </div>
+    </div>
 
 
-
-        <script src="js/main.js"></script>
+    <script src="js/main.js"></script>
 </body>
 
 </html>

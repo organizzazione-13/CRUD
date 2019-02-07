@@ -2,13 +2,22 @@
     position: fixed;
     right: 10px;
     bottom: 10px;
-    border-radius: 50%;
+    border-radius: 20px;
 }
 
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
     display: none;
-}
-body
-{
+} */
+
+body {
     font-family: 'Raleway', sans-serif;
+}
+
+.record>td>span>button>i {
+    width: 14px;
+    height: 16px;
+}
+
+.table td {
+    vertical-align: middle;
 }
