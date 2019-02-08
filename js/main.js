@@ -268,12 +268,12 @@ function updateRecords() {
     for (let persona of personePage) {
         $('#records').append(`
         <tr class="record">
-            <td>${persona.nome}</td>
-            <td>${persona.cognome}</td>
-            <td>${persona.nascita}</td>
-            <td>${persona.redditoNum()}</td>
-            <td>${persona.sesso.charAt(0).toUpperCase() + persona.sesso.slice(1)}</td>
-            <td>
+            <td data-title="Nome">${persona.nome}</td>
+            <td data-title="Cognome">${persona.cognome}</td>
+            <td data-title="Nascita">${persona.nascita}</td>
+            <td data-title="Reddito">${persona.redditoNum()}</td>
+            <td data-title="Sesso">${persona.sesso.charAt(0).toUpperCase() + persona.sesso.slice(1)}</td>
+            <td data-title="Comandi">
                 <span data-toggle="modal" data-target="#entryForm" data-scopo="${persone.indexOf(persona)}">
                     <button type="button" class="btn btn-outline-dark" data-toggle="tooltip" data-placement="left" title="Modifica"><i class="fas fa-edit"></i></button>
                 </span>
