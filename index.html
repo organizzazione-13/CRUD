@@ -13,7 +13,7 @@
         crossorigin="anonymous">
     <link rel="stylesheet" href="stylesheets/main.css">
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet"> <!-- modificato -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
         crossorigin="anonymous"></script>
@@ -78,7 +78,8 @@
                             <label class="col-3 col-form-label">Nome</label>
                             <div class="col-7">
                                 <!--inserisce la textbox  e controlla che i campi non siano vuoti o con valori non accettabili -->
-                                <input type="text" class="form-control" id="nome" minlength="2" maxlength="30" pattern="[a-zA-Z .']+" required>
+                                <input type="text" class="form-control" id="nome" minlength="2" maxlength="30" pattern="[a-zA-Z .']+"
+                                    required>
                                 <div class="invalid-feedback">
                                     Inserisci un nome valido.
                                 </div>
@@ -87,8 +88,9 @@
                         <div class="form-group row justify-content-between">
                             <label class="col-3 col-form-label">Cognome</label>
                             <div class="col-7">
-                                <!--inserisce la textbox  e controlla che i campi non siano vuoti o con valori non accettabili --> 
-                                <input type="text" class="form-control" id="cognome" minlength="2" maxlength="30" pattern="[a-zA-Z .']+" required>
+                                <!--inserisce la textbox  e controlla che i campi non siano vuoti o con valori non accettabili -->
+                                <input type="text" class="form-control" id="cognome" minlength="2" maxlength="30"
+                                    pattern="[a-zA-Z .']+" required>
                                 <div class="invalid-feedback">
                                     Inserisci un cognome valido.
                                 </div>
@@ -169,7 +171,7 @@
         </div>
     </div>
 
-    <script src="js/main.js"></script>
+    <script src="js/main.php"></script>
 </body>
 
 </html>

@@ -59,26 +59,7 @@ class Persona {
 }
 
 // Istanzio l'array di persone
-var persone = [
-    new Persona("Jotaro", "Kujo", "01/02/1970", "medio", "uomo"),
-    new Persona("Giorno", "Giovanna", "16/04/1985", "altissimo", "uomo"),
-    new Persona("Joseph", "Joestar", "22/09/1920", "alto", "uomo"),
-    new Persona("Jolyne", "Cujoh", "14/06/1992", "basso", "donna"),
-    new Persona("Josuke", "Higashicata", "23/05/1983", "basso", "uomo"),
-    new Persona("Johnny", "Joestar", "09/01/1871", "altissimo", "uomo"),
-    new Persona("Jonathan", "Joestar", "04/04/1868", "basso", "uomo"),
-    new Persona("Dio", "Brando", "01/02/1868", "basso", "uomo"),
-    new Persona("Sora", "Keys", "28/03/2003", "basso", "uomo"),
-    new Persona("Kairi", "Baragona", "08/12/2003", "altissimo", "donna"),
-
-    new Persona("Mario", "Rossi", "01/01/1970", "basso", "uomo"),
-    new Persona("Adriano", "Celentano", "01/01/1745", "altissimo", "uomo"),
-    new Persona("Maria", "De Filippi", "01/01/1870", "alto", "uomo"),
-    new Persona("Pino", "Bianchi", "01/01/1989", "basso", "uomo"),
-    new Persona("Ciccio", "Franco", "01/01/1950", "medio", "uomo"),
-    new Persona("Mario", "Verdi", "01/01/1970", "altissimo", "uomo"),
-    new Persona("Marco", "Antonio", "01/01/1940", "alto", "uomo"),
-];
+var persone = [];
 var personePage = [];
 var personeCercate;
 var sort = {
@@ -91,13 +72,17 @@ var resultsPerPage = 13;
 
 // Appena la pagina si sarà caricata
 $().ready(function () {
-    search();
+    fetch('js/SELECT.php').then(res => res.json()).then(j => {
+        j.forEach((elem) => {
+            persone.push(new Persona(elem['nome'], elem['cognome'], elem['nascita'], elem['reddito'], elem['sesso']));
+        });
+    }).then(() => {
+        search();
+        updateRecords();
+    })
     updatePage(1);
     $('#sortExpanded').css('display', 'none');
     $('#sortExpanded').css('opacity', 1);
-    // sortBy('cognome')
-    // Aggiorno il contenuto della tabella
-    updateRecords();
 });
 
 // Controllo per i campi del form
